@@ -4,7 +4,7 @@ const Note = require('./models/note');
 const router = require('./routes/router')
 const path = require('path');
 
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000  ;
 
 const dbURL = 'mongodb+srv://mario_nan:01023090014@nodetest.vseduop.mongodb.net/Notes_app?retryWrites=true&w=majority';
 //starting the app
