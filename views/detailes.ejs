@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>details</title>
+</head>
+
+<body>
+    <form action="/update" method="POST">
+        <div class="container">
+            <h1 class="display-1">Edit note</h1>
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon1">content</span>
+                <input type="text" name="content" class="form-control form-control-lg" value="<%= note.content %> ">
+                <input type="hidden" name="_id" value="<%= note._id %>">
+            </div>
+            <div class="mx-auto" style="width: 100px;margin-top:3rem">
+                <button type="submit" class="btn btn-primary btn-lg" name="submit">edit</button>
+                <a data-doc="<%= note._id %>" class="btn btn-danger">delete</a>
+            </div>
+        </div>
+    </form>
+    <script>
+        const deleted = document.querySelector('.btn-danger');
+
+        deleted.addEventListener('click', (e) => {
+            const endpoint = `/${deleted.dataset.doc}`;
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+                .then((response) => { response.json() })
+                .then((data) => { window.location.href = '/' })
+                .catch((err) => { console.log(err) })
+        })
+    </script>
+</body>
+
+</html>
